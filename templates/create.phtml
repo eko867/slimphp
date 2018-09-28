@@ -1,0 +1,64 @@
+<?php
+$form=$viewModel->form;
+$form->prepare();
+
+//$r=new Zend\View\Renderer\PhpRenderer();
+//$h=new \Zend\View\HelperPluginManager();
+$f=new Zend\Form\View\Helper\Form();
+$fl=new Zend\Form\View\Helper\FormLabel($form->get('label'));
+$fe=new Zend\Form\View\Helper\FormElement($form->get('label'));
+$fee=$fe=new Zend\Form\View\Helper\FormElementErrors();
+
+?>
+
+<h1>Создание нового альбома</h1>
+
+<p>
+    Пожалуйста, заполните следующую форму и нажмите кнопку <i>Create</i>.
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <?=$f->openTag($form); ?>
+
+        <div class="form-group">
+            <!--заголовок альбома-->
+            <?= $fl($form->get('label')); ?>
+            <?php $tmp=$form->get('label')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+            <?= $fee($form->get('label')); ?>
+            <br>
+            <!--адрес описание альбома-->
+            <?= $fl($form->get('note')); ?>
+            <?php $tmp=$form->get('note')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+            <?= $fee($form->get('note')); ?>
+            <br>
+            <!--имя автора-->
+            <?= $fl($form->get('authorName')); ?>
+            <?php $tmp=$form->get('authorName')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+            <?= $fe($form->get('authorName')); ?>
+            <?= $fee($form->get('authorName')); ?>
+            <br>
+            <!--email-автора-->
+            <?= $fl($form->get('email')); ?>
+            <?php $tmp=$form->get('email')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+            <?= $fe($form->get('email')); ?>
+            <?= $fee($form->get('email')); ?>
+            <br>
+            <!--фото автора-->
+            <?= $fl($form->get('phone')); ?>
+            <?php $tmp=$form->get('phone')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+            <?= $fee($form->get('phone')); ?>
+            <br>
+            <!--<div class="hint">(PNG and JPG formats are allowed)</div>-->
+        </div>
+        <!-- кнопка-->
+        <?php $tmp=$form->get('submit')->getAttributes(); ?>
+        <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ;?>
+        <?= $f->closeTag(); ?>
+    </div>
+</div>

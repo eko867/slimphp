@@ -1,0 +1,86 @@
+<h1>Альбомы</h1>
+<br>
+<a href="//slimphp/albums/create">Добавить альбом</a>
+
+<table border="2">
+    <tr>
+        <th> Превью (последнее фото) </th>
+        <th> Название </th>
+        <th> Описание </th>
+        <th> Автор </th>
+        <th> Время последнего редактирования </th>
+        <th> Время последнего добавления фото </th>
+        <th> Фотографий в альбоме</th>
+        <th> Управление </th>
+    </tr>
+
+<?php foreach($albums as $album): ?>
+    <tr>
+        <td>
+            <a href="<?= '//slimphp/albums/'.$album->getId() ?>">
+                <?php
+                    $lastPhoto=$album->getPhotos()->last();
+                    if ($lastPhoto==null) {
+                        echo 'None';
+                    } else {
+                        echo '<img src="'.$lastPhoto->getFilepath().'" height="100px">';
+                    }
+                ?>
+            </a>
+        </td>
+        <td>
+            <p><?= $album->getLabel(); ?></p>
+        </td>
+        <td>
+            <p><?= $album->getNote(); ?></p>
+        </td>
+        <td>
+            <p>
+                <!--Автор: -->
+                 <?= $album->getAuthor()->getName() ?>
+            </p>
+        </td>
+
+        <td>
+            <p><?= $album->getLastModifiedAt()->format(DateTime::ATOM); ?></p>
+        </td>
+
+        <td>
+            <p><?php
+             if ($lastPhoto==null) {
+                 echo '-';
+             } else {
+                 echo $lastPhoto->getLoadedAt()->format(DateTime::ATOM);
+             }
+              ?>
+            </p>
+        </td>
+
+        <td>
+            <p>
+                <?= count($album->getPhotos()->toArray()) ?>
+            </p>
+        </td>
+
+
+        <td>
+            <table >
+                <tr>
+                    <td>
+                        <a href="<?='albums/'.$album->getId.'/edit' ?>">Редактировать описание</a>
+                        <br>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="<?='albums/'.$album->getId.'/newphoto' ?>">Добавить фото в альбом</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
+
+</body>
