@@ -1,6 +1,6 @@
 <h1>Альбомы</h1>
 <br>
-<a href="//slimphp/albums/create">Добавить альбом</a>
+<a href="albums/create">Добавить альбом</a>
 
 <table border="2">
     <tr>
@@ -17,13 +17,14 @@
 <?php foreach($albums as $album): ?>
     <tr>
         <td>
-            <a href="<?= '//slimphp/albums/'.$album->getId() ?>">
+            <a href="<?= 'albums/'.$album->getId() ?>">
                 <?php
                     $lastPhoto=$album->getPhotos()->last();
                     if ($lastPhoto==null) {
                         echo 'None';
                     } else {
-                        echo '<img src="'.$lastPhoto->getFilepath().'" height="100px">';
+                        //echo '<img src="'.$lastPhoto->getFilepath().'" height="100px">';
+                        echo '<img src="'.'/data/upload'.substr($lastPhoto->getFilepath(),33).'" height="100px">';
                     }
                 ?>
             </a>

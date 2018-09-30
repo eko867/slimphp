@@ -76,11 +76,11 @@ class AlbumForm extends Form
             'type'  => 'email',
             'name' => 'email',
             'attributes' => [
-                'value' => 'example@site.com',
+                //'value' => 'example@site.com',
                 'id' => 'email'
             ],
             'options' => [
-                'label' => 'E-mail',
+                'label' => 'E-mail: example@site.com',
             ],
         ]);
 
@@ -130,6 +130,23 @@ class AlbumForm extends Form
                     'options' => [
                         'min' => 1,
                         'max' => 50
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name'     => 'note',
+            'required' => false,
+            'filters'  => [
+                ['name' => 'StripTags'],
+            ],
+            'validators' => [
+                [
+                    'name'    => 'StringLength',
+                    'options' => [
+                        'min' => 1,
+                        'max' => 200
                     ],
                 ],
             ],

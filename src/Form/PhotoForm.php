@@ -170,7 +170,8 @@ class PhotoForm extends Form
                 [
                     'name' => 'Zend\Filter\File\RenameUpload',
                     'options' => [
-                        'target'=>'./data/upload', //выгруженный файл сохраняем в эту папку
+                        //'target'=>'./data/upload', //выгруженный файл сохраняем в эту папку
+                        'target'=>'C:\nginx\html\slimphp\data\upload', //для ВИНДЫ //выгруженный файл сохраняем в эту папку
                         'useUploadName'=>true, //оставить имя файла и расширение, каким оно было при загрузке пользователем (для уник. использ рандомизатор)
                         'useUploadExtension'=>true,
                         'overwrite'=>false, //если файл с именем существует, то перезапись невозможна

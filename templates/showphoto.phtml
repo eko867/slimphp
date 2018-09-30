@@ -1,0 +1,9 @@
+<a href="<?='/albums/'.$album->getId() ?>">Вернуться к альбому</a>
+<br>
+<br>
+<p>Заголовок: <?= $photo->getTitle(); ?></p>
+<p>Место съемки: <?= $photo->getGeo(); ?></p>
+<p>Дата загрузки: <?= $photo->getLoadedAt()->format(DateTime::ATOM) ?></p>
+<br>
+<img src="<?= '/data/upload'.substr($photo->getFilepath(),33); ?>">
+<!--<img src="<?php//$photo->getFilepath()?>" >-->

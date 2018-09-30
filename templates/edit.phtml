@@ -1,58 +1,69 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: user
+ * Date: 20.09.18
+ * Time: 9:32
+ */
 $form->prepare();
-
-//$r=new Zend\View\Renderer\PhpRenderer();
-//$h=new \Zend\View\HelperPluginManager();
 $f=new Zend\Form\View\Helper\Form();
 $formLabel=new Zend\Form\View\Helper\FormLabel();
 $formElementErrors=new Zend\Form\View\Helper\FormElementErrors();
-//$formElement=new Zend\Form\View\Helper\FormElement($form->get('label'));
 ?>
 
-<h1>Создание нового альбома</h1>
+<a href="<?='/albums/'.$album->getId().'/delete' ?>">Удалить данный альбом</a>
+<br>
+
+<h1>Редактирование описания альбома</h1>
 
 <p>
-    Пожалуйста, заполните следующую форму и нажмите кнопку <i>Создать</i>.
+    Вы редактирует альбом <?= '# '.$album->getId().' -  '.$album->getLabel() ?>
+</p>
+<br>
+
+<p>
+    Пожалуйста, заполните следующую форму и нажмите кнопку <i>Save</i>.
 </p>
 
-<div >
-    <div >
+<div>
+    <div">
         <?= $f->openTag($form); ?>
+
         <div class="form-group">
             <!--заголовок альбома-->
             <?= $formLabel($form->get('label')).'*' ?>
-            <?php $tmp=$form->get('label')->getAttributes(); ?>
-            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ?>
+            <?php $tmp=$form->get('label')->getAttributes() ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('label')->getValue().'">' ?>
             <?= $formElementErrors($form->get('label')) ?>
             <br>
             <!--адрес описание альбома-->
             <?= $formLabel($form->get('note')) ?>
             <?php $tmp=$form->get('note')->getAttributes(); ?>
-            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">'?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('note')->getValue().'">'?>
             <?= $formElementErrors($form->get('note')) ?>
             <br>
             <!--имя автора-->
             <?= $formLabel($form->get('authorName')).'*' ?>
             <?php $tmp=$form->get('authorName')->getAttributes(); ?>
-            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('authorName')->getValue().'">'?>
             <?= $formElementErrors($form->get('authorName')) ?>
             <br>
             <!--email-автора-->
             <?= $formLabel($form->get('email')) ?>
             <?php $tmp=$form->get('email')->getAttributes();?>
-            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">'?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('email')->getValue().'">'?>
             <?= $formElementErrors($form->get('email')) ?>
             <br>
             <!--фото автора-->
             <?= $formLabel($form->get('phone')) ?>
             <?php $tmp=$form->get('phone')->getAttributes(); ?>
-            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">'?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('phone')->getValue().'">'?>
             <?= $formElementErrors($form->get('phone')) ?>
             <br>
         </div>
         <!-- кнопка-->
         <?php $tmp=$form->get('submit')->getAttributes(); ?>
-        <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="Создать">'?>
+        <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="Сохранить">'?>
         <?= $f->closeTag() ?>
     </div>
 </div>

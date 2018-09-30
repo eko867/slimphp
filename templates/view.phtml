@@ -1,0 +1,82 @@
+<?php
+//because ArrayCollection
+$photosArrayCollection=$album->getPhotos();
+$photos=$photosArrayCollection->toArray();
+?>
+<p>
+    <a href="/albums" ><= назад в галерею</a>
+</p>
+<br>
+
+<p>
+    Вы cмотрите альбом <?= '# '.$album->getId().' -  '.$album->getLabel() ?>
+</p>
+<br>
+<a href="<?= '/albums/'.$album->getId().'/delete' ?>">Удалить данный альбом</a>
+<br>
+<a href="<?= '/albums/'.$album->getId().'/newphoto' ?>">Добавить новое фото</a>
+
+<?php if(count($photos)==0): ?>
+    <p>Это пустой альбом</p>
+    <br>
+<?php else:?>
+
+    <table border="2">
+        <tr>
+            <th> Изображение </th>
+            <th> Заголовок </th>
+            <th> Место съемки </th>
+            <th> Загружен </th>
+            <th> Опции </th>
+        <?php foreach($photos as $photo): ?>
+            <tr>
+                <td>
+                    <a href="<?= '/albums/'.$album->getId().'/photos/'.$photo->getId() ?>">
+                        <img src="<?=
+                                    '/data/upload'.substr($photo->getFilepath(),33);
+                                    //$photo->getFilepath()
+                                    ?>" width="250px"> <!--preview -->
+                    </a>
+                </td>
+                <td>
+                    <p><?= $photo->getTitle() ?></p>
+                </td>
+                <td>
+                    <p><?= $photo->getGeo() ?></p>
+                </td>
+                <td>
+                    <p>
+                        <?= $photo->getLoadedAt()->format(DateTime::ATOM) ?>
+                    </p>
+                </td>
+
+
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="<?= '/albums/'.$album->getId().'/photos/'.$photo->getId().'/edit' ?>">Редактировать описание фото</a>
+                                <br>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="<?= '/albums/'.$album->getId().'/photos/'.$photo->getId().'/delete' ?>">Удалить фото</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <br>
+        <?php endforeach; ?>
+    </table>
+
+<?php endif;
+//dump($this->photos);
+//echo $this->paginationControl($this->photos,
+//    'Sliding',
+//    'application/partial/paginator',
+//    ['route' => 'albums/alb', 'idAlbum'=>$album->getId()]
+//);
+?>

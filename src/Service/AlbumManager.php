@@ -94,7 +94,6 @@ class AlbumManager
         $photo=new Photo();
         $photo->setTitle($data['title']);
         $photo->setGeo($data['geo']);
-        $photo->setFilepath('srccc');//?
         $photo->setAlbum($album);
         $filepath=ltrim($data['file']['tmp_name'], '.'); //удалим первую точку
         $photo->setFilepath($filepath);

@@ -1,0 +1,43 @@
+<?php
+$form->prepare();
+$f=new Zend\Form\View\Helper\Form();
+$formLabel=new Zend\Form\View\Helper\FormLabel();
+$formElementErrors=new Zend\Form\View\Helper\FormElementErrors();
+?>
+
+<a href="<?='/albums/'.$photo->getAlbum()->getId(), '/photos/'.$photo->getId().'/delete' ?>">Удалить эту фотографию</a>
+<br>
+
+<h1>Редактирование описания фото</h1>
+<br>
+<img src="<?= '/data/upload'.substr($photo->getFilepath(),33); ?>" width="250px">
+<!--<img src="<?php//$photo->getFilepath()?>" height="100px">-->
+<br>
+<p>
+    Пожалуйста, заполните следующую форму и нажмите кнопку <i>Сохранить</i>.
+</p>
+
+<div>
+    <div>
+        <?= $f->openTag($form); ?>
+
+        <div>
+            <!--заголовок фотографии-->
+            <?= $formLabel($form->get('title')).'*' ?>
+            <?php $tmp=$form->get('title')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('title')->getValue().'">' ?>
+            <?= $formElementErrors($form->get('title')) ?>
+            <br><br>
+            <!--адрес съемки фотографии-->
+            <?= $formLabel($form->get('geo')) ?>
+            <?php $tmp=$form->get('geo')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="'.$form->get('geo')->getValue().'">' ?>
+            <?= $formElementErrors($form->get('geo')) ?>
+            <br><br>
+        </div>
+        <!-- кнопка-->
+        <?php $tmp=$form->get('submit')->getAttributes(); ?>
+        <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="Сохранить">'?>
+        <?= $f->closeTag(); ?>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<?php
+$form->prepare();
+$f=new Zend\Form\View\Helper\Form();
+$formLabel=new Zend\Form\View\Helper\FormLabel();
+$formElementErrors=new Zend\Form\View\Helper\FormElementErrors();
+?>
+
+<h1>Загрузка фотографии</h1>
+<p>
+    Вы добавляете фото в альбом <?= '# '.$album->getId().' -  '.$album->getLabel() ?>
+</p>
+<br>
+<p>
+    Пожалуйста, заполните следующую форму и нажмите кнопку <i>Добавить</i>.
+</p>
+
+<div>
+    <div>
+        <?= $f->openTag($form); ?>
+
+        <div>
+            <!--заголовок фотографии-->
+            <?= $formLabel($form->get('title')).'*' ?>
+            <?php $tmp=$form->get('title')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ?>
+            <?= $formElementErrors($form->get('title')) ?>
+            <br><br>
+            <!--адрес съемки фотографии-->
+            <?= $formLabel($form->get('geo')) ?>
+            <?php $tmp=$form->get('geo')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ?>
+            <?= $formElementErrors($form->get('geo')) ?>
+            <br><br>
+            <!--выбор файла для загрузки фотографии-->
+            <?= $formLabel($form->get('file')).'*' ?>
+            <?php $tmp=$form->get('file')->getAttributes(); ?>
+            <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'">' ?>
+            <?= $formElementErrors($form->get('file')) ?>
+            <br><br>
+        </div>
+        <!-- кнопка-->
+        <?php $tmp=$form->get('submit')->getAttributes(); ?>
+        <?= '<input type="'.$tmp['type'].'" name="'.$tmp['name'].'" id="'.$tmp['id'].'" value="Добавить">'?>
+        <?= $f->closeTag(); ?>
+    </div>
+</div>
